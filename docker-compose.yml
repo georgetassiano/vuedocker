@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  nuxt:
+    build: ./workspace
+    tty: true
+    command: yarn dev
+    volumes:
+      - ${}:/app
+    ports:
+      - "3000:3000"
