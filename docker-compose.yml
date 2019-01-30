@@ -1,11 +1,47 @@
 version: '3'
 
-services:
+networks:
+  frontend:
+    driver: ${NETWORKS_DRIVER}
+
+volumes:
   nuxt:
-    build: ./workspace
+    driver: ${VOLUMES_DRIVER}
+  vuecli:
+    driver: ${VOLUMES_DRIVER}
+
+services:
+
+### Workspace Utilities ##################################
+  workspace:
+    build:
+      context: ./workspace
+      args:
+        - NODEJS_ALPINE_VERSION=${NODEJS_ALPINE_VERSION}
+        - APP_CODE_PATH_CONTAINER=${APP_CODE_PATH_CONTAINER}
+        - APP_PORT_EXPOSE=${APP_PORT_EXPOSE}
+        - DOCKER_HOST_IP=${DOCKER_HOST_IP}
     tty: true
-    command: yarn dev
     volumes:
-      - ${}:/app
+      - ${APP_CODE_PATH_HOST}:${APP_CODE_PATH_CONTAINER}
     ports:
-      - "3000:3000"
+      - "${APP_PORT_EXPOSE}:${APP_CONTAINER_PORT_EXPOSE}"
+    networks:
+      - frontend
+
+### VUE CLI ##############################################
+  vuecli:
+    build:
+      context: ./vuecli
+      args:
+        - NODEJS_ALPINE_VERSION=${NODEJS_ALPINE_VERSION}
+        - APP_CODE_PATH_CONTAINER=${APP_CODE_PATH_CONTAINER}
+        - VUECLI_PORT_EXPOSE=${VUECLI_PORT_EXPOSE}
+        - DOCKER_HOST_IP=${DOCKER_HOST_IP}
+    tty: true
+    volumes:
+      - ${APP_CODE_PATH_HOST}:${APP_CODE_PATH_CONTAINER}
+    ports:
+      - "${VUECLI_PORT_EXPOSE}:${VUECLI_CONTAINER_PORT_EXPOSE}"
+    networks:
+      - frontend

@@ -1,0 +1,48 @@
+###########################################################
+###################### General Setup ######################
+###########################################################
+
+### Paths #################################################
+
+# Point to the path of your applications code on your host
+APP_CODE_PATH_HOST=../
+
+# Point to where the `APP_CODE_PATH_HOST` should be in the container. You may add flags to the path `:cached`, `:delegated`. When using Docker Sync add `:nocopy`
+APP_CODE_PATH_CONTAINER=/var/www
+
+# Choose storage path on your machine. For all storage systems
+DATA_PATH_HOST=~/.vuedock/data
+
+### Drivers ################################################
+
+# All volumes driver
+VOLUMES_DRIVER=local
+
+# All Networks driver
+NETWORKS_DRIVER=bridge
+
+### Docker Host IP ########################################
+
+# Enter your Docker Host IP (will be appended to /etc/hosts). Default is `10.0.75.1`
+DOCKER_HOST_IP=0.0.0.0
+
+# If you are using Docker Sync. For `osx` use 'native_osx', for `windows` use 'unison', for `linux` docker-sync is not required
+DOCKER_SYNC_STRATEGY=unison
+
+### Node.js Version ###########################################
+NODEJS_VERSION=node:11.8.0-alpine
+
+# Define the prefix of container names. This is useful if you have multiple projects that use laradock to have seperate containers per project.
+COMPOSE_PROJECT_NAME=wifinow_dashboard
+
+###########################################################
+################ Containers Customization #################
+###########################################################
+
+### WORKSPACE #############################################
+APP_PORT_EXPOSE=3000
+APP_CONTAINER_PORT_EXPOSE=3000
+
+### Vue CLI #############################################
+VUECLI_PORT_EXPOSE=8000
+VUECLI_CONTAINER_PORT_EXPOSE=8000
