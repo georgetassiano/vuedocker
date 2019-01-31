@@ -7,8 +7,7 @@ WORKDIR ${APP_CODE_PATH_CONTAINER}
 
 RUN apk update && \
     apk add yarn && \
-    apk add git && \
-    npm install -g @vue/cli
+    apk add git
 
 ARG DOCKER_HOST_IP=${DOCKER_HOST_IP:-0.0.0.0}
 ENV HOST ${DOCKER_HOST_IP}
