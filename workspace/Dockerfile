@@ -5,9 +5,9 @@ MAINTAINER George Tassiano
 ARG APP_CODE_PATH_CONTAINER=${APP_CODE_PATH_CONTAINER:-/var/www}
 WORKDIR ${APP_CODE_PATH_CONTAINER}
 
-RUN apk update && \
-    apk add yarn && \
-    apk add git
+RUN apt-get update -y && \
+    apt-get install yarn -y && \
+    apt-get install git -y
 
 ARG DOCKER_HOST_IP=${DOCKER_HOST_IP:-0.0.0.0}
 ENV HOST ${DOCKER_HOST_IP}
