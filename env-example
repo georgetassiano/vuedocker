@@ -30,10 +30,10 @@ DOCKER_HOST_IP=0.0.0.0
 DOCKER_SYNC_STRATEGY=unison
 
 ### Node.js Version ###########################################
-NODEJS_ALPINE_VERSION=11.8.0
+NODEJS_ALPINE_VERSION=latest
 
 # Define the prefix of container names. This is useful if you have multiple projects that use laradock to have seperate containers per project.
-COMPOSE_PROJECT_NAME=wifinow_dashboard
+COMPOSE_PROJECT_NAME=vuedocker
 
 ###########################################################
 ################ Containers Customization #################
